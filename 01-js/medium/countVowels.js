@@ -7,6 +7,8 @@
 
 function countVowels(str) {
     // Your code here
+    str = str.toLowerCase();
+    if
 }
 
 module.exports = countVowels;
