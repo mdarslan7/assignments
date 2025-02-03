@@ -1,6 +1,19 @@
+const jwt = require("jsonwebtoken");
+require("dotenv").config();
+
 function userMiddleware(req, res, next) {
-    // Implement user auth logic
-    // You need to check the headers and validate the user from the user DB. Check readme for the exact headers to be expected
+  const token = req.headers.authorization;
+  const parts = token.split(" ");
+  const jwtToken = parts[1];
+  const decoded = jwt.verify(jwtToken, process.env.JWT_SECRET);
+  if (decoded.username) {
+    req.username = decoded.username;
+    next();
+  } else {
+    res.status(403).send({
+      msg: "Unauthorized",
+    });
+  }
 }
 
 module.exports = userMiddleware;
