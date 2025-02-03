@@ -7,7 +7,6 @@ mongoose.connection.on('connected', () => {
     console.log('Connected to MongoDB');
 });
 
-// Define schemas
 const AdminSchema = new mongoose.Schema({
     username: String,
     password: String
